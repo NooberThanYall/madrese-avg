@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+   background-color: #dadada;
+}
+
+@font-face {
+   font-family: myFirstFont;
+   src: url('/font/lalezar.ttf');
+ }
+ 
+ h1 {
+   font-family: myFirstFont;
+ }
