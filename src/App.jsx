@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import {useState} from 'react';
 
 //
 
 const App = () => {
-  const [values, setValues] = useState(["", "", "", "", "", "", "", ""]);
+  const [values, setValues] = useState(["", ""]);
   const [avg, setAvg] = useState(0)
 
   function handleChange(i, e) {
@@ -16,15 +16,19 @@ const App = () => {
     const avg =
       values.reduce((prev, cur) => Number(prev) + Number(cur)) / values.length;
 
-    setAvg(avg)
+    setAvg(Math.floor(avg))
+  }
+
+  function handleAdd() {
+    setValues(val => [...val, ''])
   }
 
   return (
     <div className="flex flex-col h-screen justify-center items-center gap-y-10">
 
       <h1 className="text-[55px] text-gray-800">به دیوانه خانه فجر خوش آمدید</h1>
-      <div className="w-[600px] shadow-2xl rounded-lg bg-white flex h-[700px] p-4 flex-wrap gap-x-[90px]">
-        <div className="flex flex-col justify-between gap-y-2">
+      <div className="w-[600px] shadow-2xl rounded-lg bg-white flex max-h-[700px] overflow-scroll p-4 flex-wrap gap-x-[90px]">
+        <div className="flex flex-col justify-between gap-y-2 ">
           {values.map((val, i) => {
             return (
               <input
@@ -41,13 +45,15 @@ const App = () => {
             className="bg-blue-500 text-white p-4 text-xl rounded-md hover:bg-blue-600 transition-all shadow-xl"
             onClick={() => handleAvg()}
           >
-            Average Of 8
+            Average Of {values.length}
           </button>
         </div>
         <div className="flex flex-col justify-center items-center">
           <h1 className="text-center text-[70px] ml-6">{avg}</h1>
         </div>
       </div>
+
+      <button className='text-[65px]' onClick={(e) => handleAdd()}>+</button>
     </div>
   );
 };
